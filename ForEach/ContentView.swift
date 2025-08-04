@@ -8,27 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
-    let dias = ["lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
     var body: some View {
         VStack {
-            ScrollView{
-                ForEach(dias, id:\.self){ dia in
-                    Text(dia)
-                        .font(.headline)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue.opacity(0.7))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                                  
-                }
-            }
-            .padding(30)
+           mostar()
          
         }
    
     }
 }
+
+struct Personaje: Identifiable{
+    let id = UUID()
+    let nombre: String
+    let emoji: String
+}
+
+struct mostar: View{
+    let personajes = [
+        Personaje(nombre: "Pikachu", emoji: "⚡️"),
+        Personaje(nombre: "Goku", emoji: "🟠"),
+        Personaje(nombre: "Sailor Moon", emoji: "🌙"),
+        Personaje(nombre: "Doraemon", emoji: "🐱‍🚀"),
+        Personaje(nombre: "Ash", emoji: "🎒")
+    ]
+    var body: some View{
+        VStack{
+            ScrollView{
+                ForEach(personajes) { personaje in
+                    Text("Hola soy \(personaje.nombre) \(personaje.emoji)")
+                }
+            }
+        }
+    }
+}
+
 
 #Preview {
     ContentView()
